@@ -91,9 +91,9 @@ def pregunta_03():
         for fila in lector_csv:
             fila = fila[0].split("\t")
             if fila[0] not in l:
-                l[fila[0]] = fila[1]
+                l[fila[0]] = int(fila[1])
             else:
-                l[fila[0]]+= fila[1]
+                l[fila[0]]+= int(fila[1])
             
     for key in l:
         ans.append((key,l[key]))
@@ -301,3 +301,5 @@ def pregunta_12():
 
     """
     return
+
+# print(pregunta_03())

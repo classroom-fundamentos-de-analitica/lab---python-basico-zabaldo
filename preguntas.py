@@ -31,7 +31,7 @@ def pregunta_01():
         for fila in lector_csv:
             ans+=float(fila[1])
         
-    return 0
+    return return ans
 
 
 def pregunta_02():

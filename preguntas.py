@@ -100,8 +100,6 @@ def pregunta_03():
     ans.sort()
     return ans
 
-    return
-
 
 def pregunta_04():
     """
@@ -125,8 +123,25 @@ def pregunta_04():
     ]
 
     """
-    return
+    ans = []
+    l = {}
+    import csv
 
+    with open('data.csv', 'r') as archivo_csv:
+        lector_csv = csv.reader(archivo_csv)
+        for fila in lector_csv:
+            fila = fila[0].split("\t")
+            fecha = fila[2].split("-")
+            print(fecha[1])
+            if fecha[1] not in l:
+                l[fecha[1]] = 1
+            else:
+                l[fecha[1]]+= 1
+            
+    for key in l:
+        ans.append((key,l[key]))
+    ans.sort()
+    return ans
 
 def pregunta_05():
     """
@@ -143,7 +158,28 @@ def pregunta_05():
     ]
 
     """
-    return
+    
+    ans = []
+    l = {}
+    l2 = {}
+    import csv
+
+    with open('data.csv', 'r') as archivo_csv:
+        lector_csv = csv.reader(archivo_csv)
+        for fila in lector_csv:
+            fila = fila[0].split("\t")
+            if fila[0] not in l:
+                l[fila[0]] = int(fila[1])
+                l2[fila[0]] = int(fila[1])
+            else:
+                l[fila[0]] = max(int(fila[1]), l[fila[0]])
+                l2[fila[0]] = min(int(fila[1]), l2[fila[0]])
+                
+            
+    for key in l:
+        ans.append((key,l[key], l2[key]))
+    ans.sort()
+    return ans
 
 
 def pregunta_06():
@@ -301,5 +337,3 @@ def pregunta_12():
 
     """
     return
-
-# print(pregunta_03())

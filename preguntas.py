@@ -21,8 +21,17 @@ def pregunta_01():
     214
 
     """
-    
-    return 214
+    ans = 0
+    import csv
+
+    with open('archivo.csv', 'r') as archivo_csv:
+        lector_csv = csv.reader(archivo_csv)
+        encabezados = next(lector_csv)  # Omitir la primera fila de encabezados
+
+        for fila in lector_csv:
+            ans+=float(fila[1])
+        
+    return 0
 
 
 def pregunta_02():

@@ -27,8 +27,9 @@ def pregunta_01():
     with open('data.csv', 'r') as archivo_csv:
         lector_csv = csv.reader(archivo_csv)
         for fila in lector_csv:
+            fila = fila[0].split("\t")
             if len(fila)>2:
-                ans+=float(fila[1])
+                ans+=int(fila[1])
     return ans
 
 

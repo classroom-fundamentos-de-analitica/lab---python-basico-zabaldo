@@ -48,7 +48,22 @@ def pregunta_02():
     ]
 
     """
-    return
+    ans = []
+    l = {}
+    import csv
+
+    with open('data.csv', 'r') as archivo_csv:
+        lector_csv = csv.reader(archivo_csv)
+        for fila in lector_csv:
+            if fila[0][0] not in l:
+                l[fila[0][0]] = 1
+            else:
+                l[fila[0][0]]+= 1
+            
+    for key in l:
+        ans.append((key,l[key]))
+    ans.sort()
+    return ans
 
 
 def pregunta_03():

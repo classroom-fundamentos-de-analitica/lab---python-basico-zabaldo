@@ -81,6 +81,25 @@ def pregunta_03():
     ]
 
     """
+
+    ans = []
+    l = {}
+    import csv
+
+    with open('data.csv', 'r') as archivo_csv:
+        lector_csv = csv.reader(archivo_csv)
+        for fila in lector_csv:
+            fila = fila[0].split("\t")
+            if fila[0] not in l:
+                l[fila[0]] = fila[1]
+            else:
+                l[fila[0]]+= fila[1]
+            
+    for key in l:
+        ans.append((key,l[key]))
+    ans.sort()
+    return ans
+
     return
 
 

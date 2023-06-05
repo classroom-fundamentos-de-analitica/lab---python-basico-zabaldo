@@ -24,11 +24,12 @@ def pregunta_01():
     ans = 0
     import csv
 
-    with open('archivo.csv', 'r') as archivo_csv:
+    with open('data.csv', 'r') as archivo_csv:
         lector_csv = csv.reader(archivo_csv)
         for fila in lector_csv:
-            ans+=float(fila[1])
-    return return ans
+            if len(fila)>2:
+                ans+=float(fila[1])
+    return ans
 
 
 def pregunta_02():

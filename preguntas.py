@@ -26,11 +26,8 @@ def pregunta_01():
 
     with open('archivo.csv', 'r') as archivo_csv:
         lector_csv = csv.reader(archivo_csv)
-        encabezados = next(lector_csv)  # Omitir la primera fila de encabezados
-
         for fila in lector_csv:
             ans+=float(fila[1])
-        
     return return ans
 
 

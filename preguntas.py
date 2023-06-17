@@ -204,7 +204,26 @@ def pregunta_06():
     ]
 
     """
-    return
+    import csv
+    resp = []
+    with open('data.csv', 'r') as archivo_csv:
+        lector_csv = csv.reader(archivo_csv,delimiter="\t")
+        ans = {}
+        for fila in lector_csv:
+            elemento = fila[4].split(",")
+            for a in elemento:
+                clave, valor = a.split(":")
+                valor = int(valor)
+                if clave not in ans:
+                    ans[clave] = [valor,valor]
+                else:
+                    ans[clave] = [min(ans[clave][0],valor),max(ans[clave][1],valor)]
+        
+        ans = sorted(ans.items())
+        
+        for clave,valor in ans:
+            resp.append((clave,valor[0],valor[1]))
+    return resp
 
 
 def pregunta_07():
@@ -228,7 +247,23 @@ def pregunta_07():
     ]
 
     """
-    return
+    import csv
+    resp = []
+    with open('data.csv', 'r') as archivo_csv:
+        lector_csv = csv.reader(archivo_csv,delimiter="\t")
+        ans = {}
+        for fila in lector_csv:
+            fila[1] = int(fila[1])
+            if fila[1] not in ans:
+                ans[fila[1]] = [fila[0]]
+            else:
+                ans[fila[1]].append(fila[0])
+        
+        ans = sorted(ans.items())
+        
+        for clave,valor in ans:
+            resp.append((clave,valor))
+    return resp
 
 
 def pregunta_08():
@@ -253,7 +288,25 @@ def pregunta_08():
     ]
 
     """
-    return
+    import csv
+    resp = []
+    with open('data.csv', 'r') as archivo_csv:
+        lector_csv = csv.reader(archivo_csv,delimiter="\t")
+        ans = {}
+        for fila in lector_csv:
+            fila[1] = int(fila[1])
+            if fila[1] not in ans:
+                ans[fila[1]] = {fila[0]}
+            else:
+                ans[fila[1]].add(fila[0])
+        
+        ans = sorted(ans.items())
+        
+        for clave,valor in ans:
+            valor = list(valor)
+            valor.sort()
+            resp.append((clave,valor))
+    return resp
 
 
 def pregunta_09():
@@ -276,7 +329,28 @@ def pregunta_09():
     }
 
     """
-    return
+
+    import csv
+    resp = []
+    cc = {}
+    with open('data.csv', 'r') as archivo_csv:
+        lector_csv = csv.reader(archivo_csv,delimiter="\t")
+        ans = {}
+        for fila in lector_csv:
+            elemento = fila[4].split(",")
+            for a in elemento:
+                clave, valor = a.split(":")
+                valor = int(valor)
+                if clave not in ans:
+                    ans[clave] = 1
+                else:
+                    ans[clave]+=1
+        
+        ans = sorted(ans.items())
+        
+        for clave,valor in ans:
+            cc[clave] = valor
+    return cc
 
 
 def pregunta_10():
@@ -297,7 +371,14 @@ def pregunta_10():
 
 
     """
-    return
+
+    import csv
+    resp = []
+    with open('data.csv', 'r') as archivo_csv:
+        lector_csv = csv.reader(archivo_csv,delimiter="\t")
+        for fila in lector_csv:
+            resp.append((fila[0], len(fila[3].split(",")), len(fila[4].split(","))))
+    return resp
 
 
 def pregunta_11():
@@ -318,7 +399,24 @@ def pregunta_11():
 
 
     """
-    return
+
+    import csv
+    resp = {}
+    ans = {}
+    with open('data.csv', 'r') as archivo_csv:
+        lector_csv = csv.reader(archivo_csv,delimiter="\t")
+        for fila in lector_csv:
+            letras = fila[3].split(",")
+            fila[1] = int(fila[1])
+            for letra in letras:
+                if letra not in ans:
+                    ans[letra] = fila[1]
+                else:
+                    ans[letra]+=fila[1]
+        ans = sorted(ans.items())
+        for valor in ans:
+            resp[valor[0]] = valor[1]
+    return resp
 
 
 def pregunta_12():
@@ -336,4 +434,22 @@ def pregunta_12():
     }
 
     """
-    return
+    import csv
+    resp = {}
+    ans = {}
+    with open('data.csv', 'r') as archivo_csv:
+        lector_csv = csv.reader(archivo_csv,delimiter="\t")
+        for fila in lector_csv:
+            elemento = fila[0]
+            fila[4] = fila[4].split(",")
+            suma = 0
+            if elemento not in ans:
+                ans[elemento] = 0
+            for item in fila[4]:
+                clave, valor = item.split(":")
+                valor = int(valor)
+                ans[elemento]+=valor
+        ans = sorted(ans.items())
+        for valor in ans:
+            resp[valor[0]] = valor[1]
+    return resp
